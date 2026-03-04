@@ -1,0 +1,268 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --accent-color: #00d2ff;
+    --text-main: #ffffff;
+    --text-muted: #b3b3b3;
+    --success: #00b894;
+    --danger: #ff7675;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0f0c29;  /* Fallback */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* Deep Space Gradient */
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically too */
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Background Blobs (The glowing orbs behind the UI) */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    z-index: 0;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+body::before { background: #764ba2; top: -50px; left: -50px; }
+body::after { background: #00d2ff; bottom: -50px; right: -50px; }
+
+/* GLASS CARD (The main container style) */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 24px;
+    padding: 25px;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #fff, #b3b3b3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.user-greeting {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* Buttons */
+.btn-icon {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    width: 40px; 
+    height: 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.btn-icon:hover {
+    background: var(--primary-gradient);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+}
+
+/* Inputs */
+.input-group {
+    display: flex;
+    gap: 15px;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+}
+
+input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    padding: 10px;
+}
+
+input::placeholder { color: rgba(255,255,255,0.4); }
+#habitName { flex: 1; }
+#habitIcon { width: 50px; text-align: center; border-left: 1px solid rgba(255,255,255,0.1); }
+
+/* Add Button */
+.btn-glow {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+}
+
+.btn-glow:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.5);
+}
+
+/* HABIT LIST */
+.habit-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.habit-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.habit-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 2;
+}
+
+.habit-icon-display {
+    font-size: 1.8rem;
+    background: rgba(255,255,255,0.1);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+}
+
+.habit-info h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Streak Fire */
+.streak-badge {
+    font-size: 0.75rem;
+    background: rgba(255, 118, 117, 0.2);
+    color: #ff7675;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Custom Checkbox */
+.status-indicator {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* COMPLETED STATE */
+.habit-item.completed {
+    border-color: var(--success);
+}
+
+.habit-item.completed .status-indicator {
+    background: var(--success);
+    border-color: var(--success);
+    box-shadow: 0 0 15px var(--success);
+}
+
+.habit-item.completed::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(0, 184, 148, 0.1), transparent);
+    z-index: 1;
+}
+
+.habit-item.completed .habit-info h4 {
+    text-decoration: line-through;
+    color: rgba(255,255,255,0.4);
+}
+
+/* Delete Button */
+.delete-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    opacity: 0;
+    color: var(--danger);
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 10px;
+    z-index: 10;
+}
+.habit-item:hover .delete-btn { opacity: 1; }
+.delete-btn:hover { transform: scale(1.2); text-shadow: 0 0 10px var(--danger); }
+
+/* Chart Container */
+canvas {
+    max-height: 200px;
+}
